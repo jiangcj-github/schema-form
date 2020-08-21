@@ -1,7 +1,6 @@
 import React from 'react';
-import {SF} from './lib/model/sf';
 import 'antd/dist/antd.css';
-import {FormProperty, WidgetProperty} from './lib';
+import {FormProperty, WidgetProperty, SF, Schema} from './lib';
 import './lib/antd';
 
 
@@ -15,7 +14,7 @@ function App() {
 		console.log(sf.current.getValues());
 	}
 
-	const schema: any = {
+	const schema: Schema = {
 		properties: {
 			fruit: {
 				type: "array",
@@ -72,7 +71,6 @@ function App() {
 				},
 				required: ["province", "city"],
 				ui: {
-					
 					grid: {
 						labelWidth: "70px"
 					}
@@ -94,9 +92,8 @@ function App() {
 				format: "email",
 				title: "邮箱",
 				ui: {
-					widget: "text",
-					ui: {
-						
+					onChange: function(this: any, val: string) {
+						console.log(this, val)
 					}
 				}
 			},

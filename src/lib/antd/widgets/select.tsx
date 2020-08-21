@@ -5,7 +5,6 @@ import { SFValue } from '../../model/form-property';
 import {widgetRegistry} from "../../model/widget-factory";
 import {SCUI} from "../../utils/schema";
 import {SFItem} from "../sf-item";
-const {Option} = Select;
 
 interface SelectWidgetUI extends SCUI {
     mode?: 'multiple' | 'tags';

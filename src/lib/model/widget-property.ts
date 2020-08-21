@@ -103,4 +103,12 @@ export class WidgetProperty<UI extends SCUI = SCUI> {
 
     public update() {}
 
+    public get formProperty() {
+        return this._formProperty;
+    }
+
+    public get path() {
+        return this._path;
+    }
+
 }
