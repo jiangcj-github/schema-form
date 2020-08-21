@@ -622,6 +622,38 @@ schema: Schema = {
 }
 ```
 
+## custom部件
+custom 部件支持自定义渲染。
+
+ui 配置参考
+
+```ts
+interface CustomWidgetUI extends SCUI {
+    render?: (widgetProperty: WidgetProperty) => ReactNode;
+}
+```
+
+使用 custom 部件，需配置 ui.widget = "custom"。
+
+```ts
+schema: Schema = {
+    properties: {
+        custom: {
+            type: "string",
+            title: "自定义",
+            ui: {
+                widget: "custom",
+                render: (widgetProperty: WidgetProperty) => {
+                    const { ui } = widgetProperty;
+                    return <div>我是自定义内容, {ui.title}</div>
+                }
+            }
+        }
+    }
+}    
+```
+
+
 
 
 
