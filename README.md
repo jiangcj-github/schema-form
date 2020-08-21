@@ -102,7 +102,7 @@ formProperty    |获取表单 formProperty  |`() => FormProperty`   |-
 
 属性/方法   |说明      |类型        |默认值
 :--|:--|:--|:--
-register    |根据名称注册部件，解析 schema 时会根据 `ui.widget || schema.type ` 规则查找对应名称的部件，即如果没有 ui.widget 字段则会使用 schema.type 字段去查找，如果名称未注册则会使用 widgetRegistry.setDefault 设置的默认部件   |`(name: string, widget: WidgetType) => void`   |-
+register    |根据名称注册部件，解析 schema 时会根据 ui.widget 和 schema.type 查找对应名称的部件，如果没有 ui.widget 字段则会使用 schema.type 字段去查找，如果名称未注册则会使用 widgetRegistry.setDefault 设置的默认部件   |`(name: string, widget: WidgetType) => void`   |-
 setDefault  |设置默认部件，如果使用未注册的部件，默认使用此值   |`(widget: WidgetType) => void`   |-
 get     |根据名称获取部件，缺省则返回默认值   |`(name: string) => WidgetType`   |-
 registrySF  |注册 sf 表单，每个组件库都应该注册自己的 form 组件，例如 lib/antd/form.tsx 会调用该方法自动注册 |`(name: string, sf: WidgetType) => void`   |-
