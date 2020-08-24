@@ -1,6 +1,6 @@
 {
     "name": "ks-schema-form",
-    "version": "0.1.14",
+    "version": "1.0.0",
     "private": false,
     "files": [
         "lib"
@@ -17,22 +17,22 @@
         "type": "git",
         "url": "http://newgit.op.ksyun.com/CDN-CENTER-FE/schema-form"
     },
-    "peerDependencies": {
+    "dependencies": {
+        "react": "*",
+        "react-dom": "*",
+        "antd": "*",
+        "lodash": "^4.x",
+        "ajv": "^6.x",
+        "classnames": "^2.x"
+    },
+    "devDependencies": {
         "@types/classnames": "^2.2.10",
         "@types/lodash": "^4.14.159",
         "@types/react": "^16.9.0",
         "@types/react-dom": "^16.9.0",
-        "ajv": "^6.x",
-        "antd": "^4.5.4",
-        "classnames": "^2.x",
-        "lodash": "^4.x",
-        "react": "^16.9.0",
-        "react-dom": "^16.9.0",
         "typescript": "~3.7.2",
         "father": "^2.29.6"
     },
-    "dependencies": {},
-    "devDependencies": {},
     "scripts": {
         "build": "father build",
         "publish": "father build & npm publish"
