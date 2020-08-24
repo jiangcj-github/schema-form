@@ -1,30 +1,41 @@
 {
-    "name": "schema-form",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@testing-library/jest-dom": "^4.2.4",
-        "@testing-library/react": "^9.3.2",
-        "@testing-library/user-event": "^7.1.2",
+    "name": "ks-schema-form",
+    "version": "0.1.14",
+    "private": false,
+    "files": [
+        "lib"
+    ],
+    "keywords": [
+        "react",
+        "react-component",
+        "json-schema",
+        "schema-form"
+    ],
+    "main": "./lib/index",
+    "types": "./lib/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "http://newgit.op.ksyun.com/CDN-CENTER-FE/schema-form"
+    },
+    "peerDependencies": {
         "@types/classnames": "^2.2.10",
-        "@types/jest": "^24.0.0",
         "@types/lodash": "^4.14.159",
-        "@types/node": "^12.0.0",
         "@types/react": "^16.9.0",
         "@types/react-dom": "^16.9.0",
-        "ajv": "^6.12.4",
+        "ajv": "^6.x",
         "antd": "^4.5.4",
-        "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-scripts": "3.4.3",
-        "typescript": "~3.7.2"
+        "classnames": "^2.x",
+        "lodash": "^4.x",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "typescript": "~3.7.2",
+        "father": "^2.29.6"
     },
+    "dependencies": {},
+    "devDependencies": {},
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test"
+        "build": "father build",
+        "publish": "father build & npm publish"
     },
     "eslintConfig": {
         "extends": "react-app"
