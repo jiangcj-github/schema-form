@@ -25,10 +25,7 @@ const SchemaForm = (props: SCFormProps, ref: ((instance: any) => void) | Mutable
     const gridProperty = React.useRef(new GridProperty(ui.grid)).current;
     
     React.useImperativeHandle(ref, () => formProperty);
-    React.useEffect(() => {
-        formProperty.resetValues();
-    }, []);
-
+    
     const children = Object.entries(schema.properties || {}).map(([key, node]) => {
         const path = `${key}`;
         return createWidget(node, path, schema);

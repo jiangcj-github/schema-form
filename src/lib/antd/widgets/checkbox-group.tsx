@@ -3,7 +3,6 @@ import { Checkbox } from "antd";
 import { useWidget } from '../../model/widget';
 import {WidgetProps} from "../../model/widget-property";
 import { SCUI } from '../../utils/schema';
-import {widgetRegistry} from "../../model/widget-factory";
 import {SFItem} from "../sf-item";
 import {CheckboxValueType, CheckboxOptionType} from "antd/lib/checkbox/Group";
 
@@ -36,5 +35,3 @@ export const CheckBoxGroupWidget = (props: WidgetProps<CheckBoxGroupWidgetUI>) =
         </SFItem>
     )
 }
-
-widgetRegistry.register("antd.checkbox.group", CheckBoxGroupWidget);

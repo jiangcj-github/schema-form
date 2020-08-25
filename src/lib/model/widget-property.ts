@@ -65,7 +65,8 @@ export class WidgetProperty<UI extends SCUI = SCUI> {
     }
 
     public reset() {
-        this.schema.default && this.setValue(this.schema.default);
+        const default0 = _.get(this.formProperty.initValue, this._path)
+        this.setValue(this.schema.default ?? default0);
     }
 
     public validate() {

@@ -2,7 +2,6 @@ import React, {ReactNode} from "react";
 import { useWidget } from '../../model/widget';
 import {WidgetProps, WidgetProperty} from "../../model/widget-property";
 import { SCUI } from '../../utils/schema';
-import {widgetRegistry} from "../../model/widget-factory";
 import {SFItem} from "../sf-item";
 
 interface CustomWidgetUI extends SCUI {
@@ -18,5 +17,3 @@ export const CustomWidget = (props: WidgetProps<CustomWidgetUI>) => {
         </SFItem>
     )
 }
-
-widgetRegistry.register("antd.custom", CustomWidget);

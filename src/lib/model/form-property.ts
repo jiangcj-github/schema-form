@@ -63,8 +63,11 @@ export class FormProperty {
         this._onChange && this._onChange(this._values);
     }
 
+    public get initValue() {
+        return this._initValues;
+    }
+
     public resetValues() {
-        this._values = _.cloneDeep(this._initValues);
         for(const property of Object.values(this._properties)) {
             property.reset();
         }

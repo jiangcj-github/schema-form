@@ -3,7 +3,6 @@ import { Input } from "antd";
 import { useWidget } from '../../model/widget';
 import {WidgetProps} from "../../model/widget-property";
 import { SCUI } from '../../utils/schema';
-import {widgetRegistry} from "../../model/widget-factory";
 import {SFItem} from "../sf-item";
 
 interface StringWidgetUI extends SCUI {
@@ -15,7 +14,7 @@ interface StringWidgetUI extends SCUI {
     addonAfter?: string | ReactNode;
     prefix?: string | ReactNode;
     suffix?: string | ReactNode;
-    onChange?: (val: string) => void;
+    onChange?: (val?: string) => void;
     onFocus?: (e: FocusEvent) => void;
     onBlur?: (e: FocusEvent) => void;
     onEnter?: (e: KeyboardEvent) => void;
@@ -26,7 +25,7 @@ export const StringWidget = (props: WidgetProps<StringWidgetUI>) => {
     const {schema, ui, value} = widgetProperty;
 
     const onChange = (event: ChangeEvent) => {
-        const val = (event.target as HTMLTextAreaElement).value;
+        const val = (event.target as HTMLTextAreaElement).value || undefined;
         widgetProperty.setValue(val);
         ui.onChange && ui.onChange(val);
     }
@@ -55,6 +54,3 @@ export const StringWidget = (props: WidgetProps<StringWidgetUI>) => {
         </SFItem>
     )
 }
-
-widgetRegistry.register("antd.string", StringWidget);
-widgetRegistry.setDefault(StringWidget);

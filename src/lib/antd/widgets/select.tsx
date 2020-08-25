@@ -2,7 +2,6 @@ import React, {FocusEvent} from "react";
 import { Select } from "antd";
 import { Widget } from '../../model/widget';
 import { SFValue } from '../../model/form-property';
-import {widgetRegistry} from "../../model/widget-factory";
 import {SCUI} from "../../utils/schema";
 import {SFItem} from "../sf-item";
 
@@ -52,5 +51,3 @@ export class SelectWidget extends Widget<SelectWidgetUI> {
         )
     }
 }
-
-widgetRegistry.register("antd.select", SelectWidget);

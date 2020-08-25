@@ -9,7 +9,7 @@ interface WidgetTypeMap {
 
 class WidgetRegistry {
     private _memo: WidgetTypeMap = {};
-    private _default!: WidgetType;
+    private _default: WidgetTypeMap = {};
     private _sf: WidgetTypeMap = {};
     private _view = "antd";
 
@@ -17,8 +17,8 @@ class WidgetRegistry {
         this._memo[name] = widget;
     }
 
-    setDefault(widget: WidgetType) {
-        this._default = widget;
+    setDefault(view: string, widget: WidgetType) {
+        this._default[view] = widget;
     }
 
     setView(view: string) {
@@ -34,7 +34,7 @@ class WidgetRegistry {
         if(this.has(_name)) {
             return this._memo[_name];
         } 
-        return this._default;
+        return this._default[this._view];
     }
 
     registrySF(name: string, sf: WidgetType) {

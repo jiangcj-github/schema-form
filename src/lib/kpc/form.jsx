@@ -1,12 +1,7 @@
-import React, {ReactNode} from "react";
-import {Form} from "antd";
-import {SCFormUI} from "../model/sf";
+import React from "react";
+import {Form} from "kpc-react/components/form";
 
-interface FormProps extends SCFormUI {
-    children: ReactNode;
-}
-
-export const AntdForm = (props: FormProps) => {
+export const KpcForm = (props) => {
     const { layout, colon, style, className } = props;
     return (
         <Form 

@@ -3,7 +3,6 @@ import { Switch } from "antd";
 import { useWidget } from '../../model/widget';
 import {WidgetProps} from "../../model/widget-property";
 import { SCUI } from '../../utils/schema';
-import {widgetRegistry} from "../../model/widget-factory";
 import {SFItem} from "../sf-item";
 
 interface BooleanWidgetUI extends SCUI {
@@ -39,5 +38,3 @@ export const BooleanWidget = (props: WidgetProps<BooleanWidgetUI>) => {
         </SFItem>
     )
 }
-
-widgetRegistry.register("antd.boolean", BooleanWidget);

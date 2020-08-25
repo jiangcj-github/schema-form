@@ -13,8 +13,8 @@ done
 
 cd ..
 
-./node_modules/.bin/babel ./output --out-dir ./lib
+./node_modules/.bin/babel ./output --out-dir ./lib --config-file ./config/babel.config.js
 
 rm -rf output
 
-./node_modules/.bin/webpack --config webpack.config.js
+./node_modules/.bin/webpack --config ./config/webpack.config.js

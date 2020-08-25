@@ -39,8 +39,8 @@ export const SFItem = (props: SFItemProps) => {
             <Col className="ant-form-item-control" span={grid.controlCol} offset={grid.controlOffset}
                 style={
                     _.merge({
-                        width: grid.labelWidth || "auto",
-                    }, grid.labelStyle)
+                        width: grid.controlWidth || "auto",
+                    }, grid.controlStyle)
                 }>
                 <div className="ant-form-item-control-input">
                     <div className="ant-form-item-control-input-content">

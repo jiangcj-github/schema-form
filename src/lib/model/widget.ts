@@ -13,6 +13,10 @@ export class Widget<UI extends SCUI> extends React.Component<WidgetProps<UI>> {
         this.widgetProperty = new WidgetProperty(props, context, this.update);
     }
 
+    public componentDidMount() {
+        this.widgetProperty.reset();
+    }
+
     public componentWillUnmount() {
         this.widgetProperty.uninstall();
     }
@@ -31,6 +35,7 @@ export function useWidget<UI extends SCUI>(props: WidgetProps<UI>) {
     }, []);
 
     React.useEffect(() => {
+        widgetProperty.reset();
         return () => {
             widgetProperty.uninstall();
         }

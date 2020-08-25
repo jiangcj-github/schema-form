@@ -2,7 +2,7 @@ import React, {CSSProperties} from "react";
 import { useWidget } from '../../model/widget';
 import {WidgetProps} from "../../model/widget-property";
 import { SCUI } from '../../utils/schema';
-import {widgetRegistry, createWidget} from "../../model/widget-factory";
+import {createWidget} from "../../model/widget-factory";
 import {GridContext} from "../../model/grid-property";
 import { GridProperty } from '../../model/grid-property';
 import _ from "lodash";
@@ -56,5 +56,3 @@ export const ObjectWidget = (props: WidgetProps<ObjectWidgetUI>) => {
         </GridContext.Provider>
     )
 }
-
-widgetRegistry.register("antd.object", ObjectWidget);
