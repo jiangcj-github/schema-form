@@ -1,8 +1,9 @@
 {
     "name": "ks-schema-form",
-    "version": "0.1.14",
+    "version": "1.0.2",
     "private": false,
     "files": [
+        "dist",
         "lib"
     ],
     "keywords": [
@@ -17,25 +18,30 @@
         "type": "git",
         "url": "http://newgit.op.ksyun.com/CDN-CENTER-FE/schema-form"
     },
-    "peerDependencies": {
+    "dependencies": {
+        "ajv": "^6.x",
+        "classnames": "^2.x",
+        "lodash": "^4.x"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.10.5",
+        "@babel/core": "^7.11.4",
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-react": "^7.10.4",
         "@types/classnames": "^2.2.10",
         "@types/lodash": "^4.14.159",
         "@types/react": "^16.9.0",
         "@types/react-dom": "^16.9.0",
-        "ajv": "^6.x",
         "antd": "^4.5.4",
-        "classnames": "^2.x",
-        "lodash": "^4.x",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
+        "react-scripts": "3.4.3",
         "typescript": "~3.7.2",
-        "father": "^2.29.6"
+        "webpack-cli": "^3.3.12"
     },
-    "dependencies": {},
-    "devDependencies": {},
     "scripts": {
-        "build": "father build",
-        "publish": "father build & npm publish"
+        "start": "react-scripts start",
+        "build": "sh publish.sh",
     },
     "eslintConfig": {
         "extends": "react-app"

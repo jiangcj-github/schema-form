@@ -15,14 +15,33 @@ schema-form是一个基于[JSON Schema](http://json-schema.org/)标准的构建�
 * 代码以 `ui.` 开头的表示 UI 属性
 * 所有的部件都以对象路径的方式检索，格式为 `a.b[0].c`
 
-## 如何使用
-如果使用antd库，则引入对应的 `./lib/antd`，如果使用KPC库，则引入 `./lib/kpc`，目前kpc部件库尚未完善。
+## 安装
+```
+npm install ks-schema-form
+或者
+yarn add ks-schema-form
+```
 
+## 如何使用
+如果使用antd库，默认设置为 `antd`
+
+```ts
+import sf from "sf"
+
+sf.use("antd");
+```
+
+如果使用KPC库
+
+```ts
+sf.use("kpc");
+```
+
+配置 `json schema`
 ```tsx
 import React from 'react';
 import 'antd/dist/antd.css';
 import {FormProperty, WidgetProperty, SF, Schema} from './lib';
-import './lib/antd';
 
 function App() {
     const sf = React.useRef(new FormProperty());

@@ -21,7 +21,7 @@ export declare class WidgetProperty<UI extends SCUI = SCUI> {
     uninstall(): void;
     setValue(val: SFValue): void;
     get value(): any;
-    get required(): boolean;
+    get required(): boolean | undefined;
     get propertyName(): string;
     reset(): void;
     validate(): boolean;
