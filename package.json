@@ -41,7 +41,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "sh publish.sh",
+        "build": "sh publish.sh"
     },
     "eslintConfig": {
         "extends": "react-app"
