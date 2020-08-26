@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { MutableRefObject } from "react";
+import React, { MutableRefObject, ReactNode, CSSProperties } from "react";
 import {schemaUtil, SCUI} from "../utils/schema";
 import {FormProperty, SFContext, IFormData} from "./form-property";
 import { createWidget, widgetRegistry } from "./widget-factory";
@@ -10,10 +10,23 @@ export interface SCFormProps {
     schema: UISchema<SCFormUI>;
 }
 
+export interface IBtnOption {
+    text: string | ReactNode;
+    type?: string;
+    shape?: string;
+    loading?: boolean;
+    icon?: ReactNode;
+    disabled?: boolean;
+    style?: CSSProperties;
+    className?: string;
+    onClick: (values: IFormData) => void;
+}
+
 export interface SCFormUI extends SCUI {
     layout?: 'horizontal' | 'vertical' | 'inline';
     colon?: boolean;
     onChange?: (values: IFormData) => void;
+    actions?: IBtnOption[],
 }
 
 const SchemaForm = (props: SCFormProps, ref: ((instance: any) => void) | MutableRefObject<any> | null) => {

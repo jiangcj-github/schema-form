@@ -10,6 +10,7 @@ export interface StringWidgetUI extends SCUI {
     disabled?: boolean;
     autocomplete?: 'on' | 'off';
     autofocus?: boolean;
+    allowClear?: boolean;
     addonBefore?: string | ReactNode;
     addonAfter?: string | ReactNode;
     prefix?: string | ReactNode;
@@ -35,6 +36,7 @@ export const StringWidget = (props: WidgetProps<StringWidgetUI>) => {
             <Input 
                 value={value}
                 disabled={ui.disabled}
+                allowClear={ui.allowClear}
                 maxLength={schema.maxLength}
                 placeholder={ui.placeholder}
                 defaultValue={schema.default}

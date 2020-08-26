@@ -15,16 +15,13 @@ export const SFItem = (props: SFItemProps) => {
     const { schema, ui, error, showError, required } = props.widgetProperty;
     const grid = _.merge({}, gridProperty.grid, ui.grid);
     return (
-        <div style={ui.style}
-            className={
-                cln({
-                    "ant-row": true,
-                    "ant-form-item": true,
-                    "ant-form-item-has-error": showError,
-                    "ant-form-item-with-help": showError,
-                    [ui.className || ""]: true,
-                })
-            }>
+        <div className={
+            cln({
+                "ant-row": true,
+                "ant-form-item": true,
+                "ant-form-item-has-error": showError,
+                "ant-form-item-with-help": showError,
+            })}>
             <Col className="ant-form-item-label" span={grid.labelCol}
                 style={
                     _.merge({

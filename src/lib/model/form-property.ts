@@ -68,8 +68,10 @@ export class FormProperty {
     }
 
     public resetValues() {
+        this._validateOnChange = false;
         for(const property of Object.values(this._properties)) {
             property.reset();
+            property.resetError();
         }
         this._onChange && this._onChange(this._values);
     }

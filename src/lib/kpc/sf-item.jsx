@@ -12,14 +12,11 @@ export const SFItem = (props) => {
     const { schema, ui, error, showError, required } = props.widgetProperty;
     const grid = _.merge({}, gridProperty.grid, ui.grid);
     return (
-        <div style={ui.style}
-            className={
-                cln({
-                    "k-form-item": true,
-                    "k-invalid": showError,
-                    [ui.className || ""]: true,
-                })
-            }>
+        <div className={
+            cln({
+                "k-form-item": true,
+                "k-invalid": showError,
+            })}>
             <label className="k-label" 
                 style={
                     _.merge({

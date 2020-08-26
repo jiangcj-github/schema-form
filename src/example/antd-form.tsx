@@ -1,15 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import {FormProperty, WidgetProperty, SF, Schema} from '../lib/antd';
+import {FormProperty, WidgetProperty, SF, Schema, IFormData} from '../lib/antd';
 
 function App() {
-
-	const sf = React.useRef(new FormProperty());
-
-	const submit = () => {
-		sf.current.validates()
-		console.log(sf.current.getValues());
-	}
 
 	const schema: Schema = {
 		properties: {
@@ -169,13 +162,32 @@ function App() {
 		required: ["date", "checkgroup", "dateRange", "boolean", "name", "email", "age"],
 		ui: {
 			grid: {labelWidth: "100px"},
+			actions: [
+				{
+					text: "提交",
+					style: {width: "150px", marginLeft: "50px"},
+					onClick: function(this: FormProperty, values: IFormData) {
+						console.log(values);
+						if(this.validates()) {
+							alert(JSON.stringify(values));
+						}
+					}
+				},
+				{
+					text: "重置",
+					type: "default",
+					style: {width: "150px"},
+					onClick: function(this: FormProperty) {
+						this.resetValues();
+					}
+				},
+			]
 		}
 	}
 
     return (
 		<div style={{margin: "40px 50px", width: "800px"}}>
-			<SF schema={schema} ref={sf} />
-			<button onClick={submit} style={{width:"200px",marginLeft:"100px"}}>提交</button>
+			<SF schema={schema} />
 		</div>
 	)
 }

@@ -35,21 +35,14 @@ import {SF} from 'ks-schema-form/lib/antd';
 import {SF} from 'ks-schema-form/lib/kpc';
 ```
 
-配置 `json schema`
+开始
 ```tsx
 import React from 'react';
 import 'antd/dist/antd.css';
 import {FormProperty, WidgetProperty, SF, Schema} from 'ks-schema-form/lib/antd';
 
 function App() {
-    const sf = React.useRef(new FormProperty());
-
-    const submit = () => {
-		if(sf.current.validates()) {
-            console.log("submit", sf.current.getValues());
-        }
-	}
-
+   
     const schema: Schema = {
 		properties: {
 			name: { 
@@ -62,17 +55,48 @@ function App() {
 				title: "邮箱",
 			},
 		},
-		required: ["name", "email"],
+        ui: {
+            layout: "inline",
+            actions: [
+                {
+                    text: "搜索",
+                    onClick: function(this: FormProperty, values: IFormData) {
+                        console.log(values);
+                    }
+                },
+            ]
+        }
 	}
 
-     return (
+    return (
 		<div>
-			<SF schema={schema} ref={sf} />
-			<button onClick={submit}>提交</button>
+			<SF schema={schema} />
 		</div>
 	)
 }
 ```
+
+## 支持的部件
+
+**antd**
+* string
+* textarea
+* search
+* password
+* boolean
+* checkbox
+* checkgroup
+* datepicker
+* rangepicker
+* number
+* object
+* radiogroup
+* slider
+* custom
+
+**kpc**
+* string
+
 
 ## API
 
@@ -605,7 +629,7 @@ schema: Schema = {
 }    
 ```
 
-## checkbox.group 部件
+## checkgroup 部件
 
 ui 配置参考
 

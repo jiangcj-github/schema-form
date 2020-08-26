@@ -20,13 +20,13 @@ export const TextAreaWidget = (props: WidgetProps<TextAreaWidgetUI>) => {
         widgetProperty.setValue(val);
         ui.onChange && ui.onChange(val);
     }
-
     return (
         <SFItem widgetProperty={widgetProperty}>
             <Input.TextArea 
                 autoSize={ui.autoSize}
-                value={value}
+                value={value || ""}
                 disabled={ui.disabled}
+                allowClear={ui.allowClear}
                 placeholder={ui.placeholder}
                 defaultValue={schema.default}
                 autoFocus={ui.autofocus}

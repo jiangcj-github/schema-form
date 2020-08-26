@@ -6,6 +6,7 @@ export interface StringWidgetUI extends SCUI {
     disabled?: boolean;
     autocomplete?: 'on' | 'off';
     autofocus?: boolean;
+    allowClear?: boolean;
     addonBefore?: string | ReactNode;
     addonAfter?: string | ReactNode;
     prefix?: string | ReactNode;
