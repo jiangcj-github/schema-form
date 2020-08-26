@@ -9,20 +9,15 @@ interface WidgetTypeMap {
 
 class WidgetRegistry {
     private _memo: WidgetTypeMap = {};
-    private _default: WidgetTypeMap = {};
+    private _default!: WidgetType;
     private _sf: WidgetTypeMap = {};
-    private _view = "antd";
-
+   
     register(name: string, widget: WidgetType) {
         this._memo[name] = widget;
     }
 
-    setDefault(view: string, widget: WidgetType) {
-        this._default[view] = widget;
-    }
-
-    setView(view: string) {
-        this._view = view;
+    setDefault(widget: WidgetType) {
+        this._default = widget;
     }
 
     has(name: string) {
@@ -30,11 +25,10 @@ class WidgetRegistry {
     }
 
     get(name: string) {
-        const _name = this._view + "." + name;
-        if(this.has(_name)) {
-            return this._memo[_name];
+        if(this.has(name)) {
+            return this._memo[name];
         } 
-        return this._default[this._view];
+        return this._default;
     }
 
     registrySF(name: string, sf: WidgetType) {
@@ -42,11 +36,10 @@ class WidgetRegistry {
     }
 
     getSF(name: string) {
-        const _name = this._view + "." + name;
-        if(!this.hasSF(_name)) {
-            throw Error(`组件${_name}未注册，未引入相关文件`);
+        if(!this.hasSF(name)) {
+            throw Error(`组件${name}未注册，未引入相关文件`);
         }
-        return this._sf[_name];
+        return this._sf[name];
     }
 
     hasSF(name: string) {

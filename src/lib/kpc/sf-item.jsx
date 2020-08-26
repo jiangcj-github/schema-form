@@ -27,7 +27,7 @@ export const SFItem = (props) => {
                         textAlign: grid.labelAlign || "right"
                     }, grid.labelStyle)
                 }>
-                {required && <span className="k-star"></span>}
+                {required && <span className="k-star">*</span>}
                 {schema.title}
             </label>     
             <div className="k-content" 

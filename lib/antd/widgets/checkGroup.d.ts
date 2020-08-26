@@ -7,5 +7,5 @@ interface CheckBoxGroupWidgetUI extends SCUI {
     options?: (string | CheckboxOptionType)[];
     onChange?: (checkedValue: CheckboxValueType[]) => void;
 }
-export declare const CheckBoxGroupWidget: (props: WidgetProps<CheckBoxGroupWidgetUI>) => JSX.Element;
+export declare const CheckGroupWidget: (props: WidgetProps<CheckBoxGroupWidgetUI>) => JSX.Element;
 export {};

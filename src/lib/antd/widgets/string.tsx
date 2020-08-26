@@ -5,7 +5,7 @@ import {WidgetProps} from "../../model/widget-property";
 import { SCUI } from '../../utils/schema';
 import {SFItem} from "../sf-item";
 
-interface StringWidgetUI extends SCUI {
+export interface StringWidgetUI extends SCUI {
     placeholder?: string;
     disabled?: boolean;
     autocomplete?: 'on' | 'off';

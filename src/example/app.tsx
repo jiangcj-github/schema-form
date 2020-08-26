@@ -1,11 +1,16 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import "./assets/app.less";
-import { HashRouter, NavLink, Route } from 'react-router-dom';
-import AntdForm from "./antd-form";
-import KpcForm from "./kpc-form";
+import { HashRouter, Route, NavLink } from 'react-router-dom';
+
+const AntdForm = React.lazy(() => import("./antd-form"));
+const KpcForm = React.lazy(() => import("./kpc-form"));
 
 function App() {
+
+    const linkTo = (path: string) => {
+        window.location.href = path;
+        window.location.reload();
+    }
 
     return (
         <HashRouter>
@@ -13,13 +18,19 @@ function App() {
                 <div className="sider">
                     <div className="logo">Schema配置表单</div>
                     <div className="menu">
-                        <NavLink to="/antd" activeClassName="active">antd示例</NavLink>
-                        <NavLink to="/kpc" activeClassName="active">kpc示例</NavLink>
+                        <NavLink to="/antd" activeClassName="active">
+                            <span className="menu-item" onClick={() => linkTo(`#/antd`)} >antd示例</span>
+                        </NavLink>
+                        <NavLink to="/kpc" activeClassName="active">
+                            <span className="menu-item" onClick={() => linkTo(`#/kpc`)} >kpc示例</span>
+                        </NavLink>
                     </div>
                 </div>
                 <div className="content">
-                    <Route path="/antd" component={AntdForm} />
-                    <Route path="/kpc" component={KpcForm} />
+                    <React.Suspense fallback={<div>loading...</div>}>
+                        <Route path="/antd" component={AntdForm} />
+                        <Route path="/kpc" component={KpcForm} />
+                    </React.Suspense>
                 </div>
             </div>
         </HashRouter>

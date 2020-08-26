@@ -2,8 +2,10 @@ import {widgetRegistry} from "..";
 import {StringWidget} from "./widgets/string";
 import {KpcForm} from "./form";
 
-widgetRegistry.register("kpc.string", StringWidget);
+widgetRegistry.register("string", StringWidget);
 
-widgetRegistry.setDefault("kpc", StringWidget);
+widgetRegistry.setDefault(StringWidget);
 
-widgetRegistry.registrySF("kpc.form", KpcForm);
+widgetRegistry.registrySF("form", KpcForm);
+
+export * from "..";

@@ -5,10 +5,8 @@ declare class WidgetRegistry {
     private _memo;
     private _default;
     private _sf;
-    private _view;
     register(name: string, widget: WidgetType): void;
     setDefault(widget: WidgetType): void;
-    setView(view: string): void;
     has(name: string): boolean;
     get(name: string): React.ComponentType<any>;
     registrySF(name: string, sf: WidgetType): void;

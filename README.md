@@ -23,25 +23,23 @@ yarn add ks-schema-form
 ```
 
 ## 如何使用
-如果使用antd库，默认设置为 `antd`
+如果使用antd库，
 
 ```ts
-import sf from "sf"
-
-sf.use("antd");
+import {SF} from 'ks-schema-form/lib/antd';
 ```
 
 如果使用KPC库
 
 ```ts
-sf.use("kpc");
+import {SF} from 'ks-schema-form/lib/kpc';
 ```
 
 配置 `json schema`
 ```tsx
 import React from 'react';
 import 'antd/dist/antd.css';
-import {FormProperty, WidgetProperty, SF, Schema} from './lib';
+import {FormProperty, WidgetProperty, SF, Schema} from 'ks-schema-form/lib/antd';
 
 function App() {
     const sf = React.useRef(new FormProperty());

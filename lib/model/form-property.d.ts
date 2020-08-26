@@ -21,6 +21,7 @@ export declare class FormProperty {
     getValues(): IFormData;
     setValues(values: IFormData): void;
     setValue(path: string, val: SFValue): void;
+    get initValue(): IFormData;
     resetValues(): void;
     validates(): boolean;
     getValue(path: string): any;

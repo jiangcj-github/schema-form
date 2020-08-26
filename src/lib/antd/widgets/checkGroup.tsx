@@ -12,7 +12,7 @@ interface CheckBoxGroupWidgetUI extends SCUI {
     onChange?: (checkedValue: CheckboxValueType[]) => void;
 }
 
-export const CheckBoxGroupWidget = (props: WidgetProps<CheckBoxGroupWidgetUI>) => {
+export const CheckGroupWidget = (props: WidgetProps<CheckBoxGroupWidgetUI>) => {
     const widgetProperty = useWidget(props);
     const {schema, ui, value} = widgetProperty;
 

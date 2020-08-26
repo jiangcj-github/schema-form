@@ -1,5 +1,3 @@
-import {widgetRegistry} from "./model/widget-factory";
-
 export * from "./model/form-property";
 export * from "./model/grid-property";
 export * from "./model/widget-factory";
@@ -8,12 +6,3 @@ export * from "./model/widget";
 export * from "./model/sf";
 
 export * from "./utils/schema";
-
-export * from "./antd";
-export * from "./kpc";
-
-export default {
-    use(view: "antd" | "kpc") {
-        widgetRegistry.setView(view);
-    }
-}

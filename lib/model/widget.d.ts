@@ -6,6 +6,7 @@ export declare class Widget<UI extends SCUI> extends React.Component<WidgetProps
     static contextType: React.Context<FormProperty>;
     protected widgetProperty: WidgetProperty<UI>;
     constructor(props: WidgetProps<UI>, context: FormProperty);
+    componentDidMount(): void;
     componentWillUnmount(): void;
     private update;
 }

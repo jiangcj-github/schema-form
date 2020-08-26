@@ -1,10 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import scf, {FormProperty, WidgetProperty, SF} from '../lib';
+import {FormProperty, WidgetProperty, SF, Schema} from '../lib/antd';
 
 function App() {
-
-	scf.use("antd");
 
 	const sf = React.useRef(new FormProperty());
 
@@ -13,11 +11,11 @@ function App() {
 		console.log(sf.current.getValues());
 	}
 
-	const schema: any = {
+	const schema: Schema = {
 		properties: {
 			fruit: {
 				type: "array",
-				title: "水果",
+				title: "下拉多选",
 				ui: {
 					widget: "select",
 					mode: "tags",
@@ -29,25 +27,66 @@ function App() {
 					],
 				}
 			},
-			checkbox: {
+			checkgroup: {
 				$ref: "#/properties/fruit",
-				title: "水果",
+				title: "多选",
 				ui: {
-					widget: "checkbox.group",
+					widget: "checkgroup",
 				}
 			},
-			agree: {
+			checkbox: {
 				type: "boolean",
-				title: "爱吃水果",
+				title: "单选",
+				ui: {
+					widget: "checkbox",
+				}
+			},
+			radio: {
+				type: "string",
+				title: "水果",
+				ui: {
+					widget: "radiogroup",
+					options: ["苹果", "香蕉", "橘子"]
+				}
+			},
+			boolean: {
+				type: "boolean",
+				title: "开关",
 				default: true,
 				ui: {
-					checkedChildren: "是",
-					unCheckedChildren: "否",
+					checkedChildren: "开",
+					unCheckedChildren: "关",
+				}
+			},
+			date: {
+				type: "number",
+				title: "日期",
+				default: 1,
+				ui: {
+					widget: "datepicker",
+					allowClear: true,
+				}
+			},
+			dateRange: {
+				type: "array",
+				title: "日期范围",
+				default: [1, 2],
+				ui: {
+					widget: "rangepicker",
+					allowClear: true,
+				}
+			},
+			search: {
+				type: "string",
+				title: "搜索",
+				ui: {
+					widget: "search",
+					placeholder: "请输入关键字搜索",
 				}
 			},
 			address: { 
 				type: "object",
-				title: "详细地址",
+				title: "对象",
 				properties: {
 					province: {
 						type: "string", 
@@ -81,21 +120,38 @@ function App() {
 				title: "姓名",
 				minLength: 3,
 				maxLength: 10,
-				default: "xxx",
+				default: "john",
+			},
+			password: {
+				type: "string",
+				title: "密码",
+				ui: {
+					widget: "password",
+				}
 			},
 			age: {
 				type: "number",
 				title: "年龄",
+				ui: {
+					placeholder: "年龄",
+				}
+			},
+			age2: {
+				type: "number",
+				title: "年龄2",
+				minimum: 1,
+				maximum: 100,
+				ui: {
+					widget: "slider"
+				}
 			},
 			email: { 
 				type: "string",
 				format: "email",
 				title: "邮箱",
 				ui: {
-					widget: "text",
-					ui: {
-						
-					}
+					widget: "textarea",
+					placeholder: "请输入邮箱",
 				}
 			},
 			custom: {
@@ -110,7 +166,7 @@ function App() {
 				}
 			}
 		},
-		required: ["name", "email", "age"],
+		required: ["date", "checkgroup", "dateRange", "boolean", "name", "email", "age"],
 		ui: {
 			grid: {labelWidth: "100px"},
 		}
