@@ -1,6 +1,6 @@
 {
     "name": "ks-schema-form",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "private": false,
     "files": [
         "dist",
@@ -35,19 +35,14 @@
         "@types/react-dom": "^16.9.0",
         "@types/react-router-dom": "^5.1.5",
         "antd": "^4.5.4",
-        "autoprefixer": "^9.8.6",
         "craco-less": "^1.17.0",
-        "css-loader": "^4.2.2",
         "docz": "^2.3.1",
-        "file-loader": "^6.0.0",
         "kpc-react": "^1.4.3",
-        "postcss-loader": "^3.0.0",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.4.3",
-        "style-loader": "^1.2.1",
         "typescript": "~3.7.2",
         "webpack-cli": "^3.3.12"
     },

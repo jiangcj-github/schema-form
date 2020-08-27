@@ -1,5 +1,5 @@
 import React from "react";
-import {Form} from "kpc-react/components/form";
+import {Form} from "kpc-react";
 
 export const KpcForm = (props) => {
     const { layout, colon, style, className } = props;

@@ -76,6 +76,177 @@ function App() {
 }
 ```
 
+## CDN
+通过 cdn.jsdelivr.net/npm/ks-schema-form/dist/ 引入最新版，建议使用固定版本号，例如：cdn.jsdelivr.net/npm/ks-schema-form@1.0.5/dist/
+
+使用 antd 引入 sf.antd.min.js
+使用 kpc 引入 sf.kpc.min.js
+
+_antd.html_
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Schema Form Example</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/antd/dist/antd.min.css" />
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="https://cdn.jsdelivr.net/npm/react/umd/react.development.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.development.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/antd/dist/antd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ks-schema-form@1.0.6/dist/sf.antd.min.js"></script>
+        <script type="text/babel">
+            const { SF } = sf;
+            function App() {
+                const schema = {
+                    properties: {
+                        name: { 
+                            type: "string",
+                            title: "姓名",
+                            default: "john",
+                            ui: {
+                                placeholder: "请输入姓名",
+                                allowClear: true,
+                            }
+                        },
+                        sex: { 
+                            type: "string",
+                            title: "性别",
+                            ui: {
+                                widget: "select",
+                                placeholder: "请选择性别",
+                                style: {width: "150px"},
+                                options: [
+                                    {label: "男", value: "男"},
+                                    {label: "女", value: "女"},
+                                ]
+                            }
+                        },
+                        age: {
+                            type: "number",
+                            title: "年龄",
+                            ui: {
+                                style: {width: "100px"},
+                                placeholder: "年龄",
+                            }
+                        },
+                        province: {
+                            type: "string", 
+                            title: "省份", 
+                            default: "hb",
+                            ui: {
+                                widget: "select",
+                                style: {width: "150px"},
+                                placeholder: "请选择省份",
+                                options: [
+                                    {label: "北京", value: "bj"},
+                                    {label: "黑龙江", value: "hlj"},
+                                    {label: "湖北", value: "hb"},
+                                ]
+                            }
+                        },
+                    },
+                    ui: {
+                        layout: "inline",
+                        actions: [
+                            {
+                                text: "搜索",
+                                style: {width: "100px"},
+                                onClick: function(values) {
+                                    console.log(values);
+                                    alert(JSON.stringify(values));
+                                }
+                            },
+                            {
+                                text: "导出",
+                                style: {width: "100px"},
+                                type: "default",
+                                onClick: function(values) {
+                                    console.log(values);
+                                    alert(JSON.stringify(values));
+                                }
+                            },
+                        ]
+                    }
+                }
+                return (
+                    <div style={{margin: "40px 50px"}}>
+                        <SF schema={schema} />
+                    </div>
+                )
+            }
+            ReactDOM.render(<App />, document.getElementById('app'));
+        </script>
+    </body>
+</html>
+```
+
+_kpc.html_
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Schema Form Example</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="https://cdn.jsdelivr.net/npm/react/umd/react.development.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.development.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/kpc/dist/kpc.react.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ks-schema-form@1.0.6/dist/sf.kpc.min.js"></script>
+        <script type="text/babel">
+            const { SF, FormProperty } = sf;
+           
+            function App() {
+                const sf = React.useRef(new FormProperty());
+                const submit = () => {
+                    sf.current.validates()
+                    console.log(sf.current.getValues());
+                }
+                const schema = {
+                    properties: {
+                        name: { 
+                            type: "string",
+                            title: "姓名",
+                            minLength: 3,
+                            maxLength: 10,
+                            default: "john",
+                        },
+                        email: { 
+                            type: "string",
+                            format: "email",
+                            title: "邮箱",
+                        },
+                    },
+                    required: ["name", "email", "age"],
+                    ui: {
+                        grid: {labelWidth: "100px"},
+                    }
+                }
+                return (
+                    <div style={{margin: "40px 50px", width: "800px"}}>
+                        <SF schema={schema} ref={sf} />
+                        <button onClick={submit} style={{width:"200px",height:"30px",marginLeft:"100px",marginTop:"20px"}}>提交</button>
+                    </div>
+                )
+            }
+            
+            ReactDOM.render(<App />, document.getElementById('app'));
+        </script>
+    </body>
+</html>
+```
+
+---
+
 ## 支持的部件
 
 **antd**
@@ -97,6 +268,7 @@ function App() {
 **kpc**
 * string
 
+---
 
 ## API
 

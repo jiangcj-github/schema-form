@@ -1,5 +1,5 @@
 import React from "react";
-import Input from 'kpc-react/components/input';
+import {Input} from 'kpc-react';
 import { useWidget } from '../../model/widget';
 import {SFItem} from "../sf-item";
 

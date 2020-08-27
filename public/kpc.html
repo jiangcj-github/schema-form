@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Schema Form Example</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/kpc/dist/kpc.css" />
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="https://cdn.jsdelivr.net/npm/react/umd/react.development.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.development.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/kpc/dist/kpc.react.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ks-schema-form@1.0.6/dist/sf.kpc.min.js"></script>
+        <script type="text/babel">
+            const { SF, FormProperty } = sf;
+           
+            function App() {
+                const sf = React.useRef(new FormProperty());
+                const submit = () => {
+                    sf.current.validates()
+                    console.log(sf.current.getValues());
+                }
+                const schema = {
+                    properties: {
+                        name: { 
+                            type: "string",
+                            title: "姓名",
+                            minLength: 3,
+                            maxLength: 10,
+                            default: "john",
+                        },
+                        email: { 
+                            type: "string",
+                            format: "email",
+                            title: "邮箱",
+                        },
+                    },
+                    required: ["name", "email", "age"],
+                    ui: {
+                        grid: {labelWidth: "100px"},
+                    }
+                }
+                return (
+                    <div style={{margin: "40px 50px", width: "800px"}}>
+                        <SF schema={schema} ref={sf} />
+                        <button onClick={submit} style={{width:"200px",height:"30px",marginLeft:"100px",marginTop:"20px"}}>提交</button>
+                    </div>
+                )
+            }
+            
+            ReactDOM.render(<App />, document.getElementById('app'));
+        </script>
+    </body>
+</html>
