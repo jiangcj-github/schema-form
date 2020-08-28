@@ -11,7 +11,7 @@ function App() {
 				title: "下拉多选",
 				ui: {
 					widget: "select",
-					mode: "tags",
+					mode: "multiple",
 					placeholder: "请选择水果",
 					options: [
 						{label: "苹果", value: "apple"},
@@ -145,6 +145,13 @@ function App() {
 				ui: {
 					widget: "textarea",
 					placeholder: "请输入邮箱",
+					onValidate: function(this: WidgetProperty, values: any) {
+						if(!/^a/.test(this.value)) {
+							this.setError("必须以a开头");
+							return false;
+						}
+						return true;
+					}
 				}
 			},
 			custom: {

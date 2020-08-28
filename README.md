@@ -79,8 +79,7 @@ function App() {
 ## CDN
 通过 cdn.jsdelivr.net/npm/ks-schema-form/dist/ 引入最新版，建议使用固定版本号，例如：cdn.jsdelivr.net/npm/ks-schema-form@1.0.5/dist/
 
-使用 antd 引入 sf.antd.min.js
-使用 kpc 引入 sf.kpc.min.js
+使用 antd 引入 sf.antd.min.js，使用 kpc 引入 sf.kpc.min.js
 
 _antd.html_
 
@@ -477,6 +476,31 @@ onValidate  |表单校验时触发，必须返回true，否则导致验证失败
 style       |部件或表单样式     |-      |-
 className   |部件或表单类名     |-      |-
 
+### **表单UI配置**
+```
+export interface SCFormUI extends SCUI {
+    layout?: 'horizontal' | 'vertical' | 'inline';
+    colon?: boolean;
+    onChange?: (values: IFormData) => void;
+    actions?: IBtnOption[],
+}
+```
+
+schema 根节点下面的 ui 配置为整个表单的ui配置，例如监听整个表单值改变。
+```ts
+schema: Schema = {
+    properties: {
+        email: {...}
+    }
+    ui: {
+        layout: "inline",
+        onChange: function(values: IFormData) {
+            console.log("values改变:" + values);
+        }
+    }
+}
+```
+
 ### **ui.erros**
 自定义错误信息配置
 
@@ -497,6 +521,31 @@ schema: Schema = {
     }
 }
 ```
+
+### **自定义错误校验**
+
+```typescript
+schema: Schema = {
+    properties: {
+        email: {
+            type: 'string',
+            title: '邮箱',
+            format: 'email',
+            maxLength: 20,
+            ui: {
+                onValidate: function(this: WidgetProperty) {
+                    if(!/^a/.test(this.value)) {
+                        this.setError("必须以a开头");
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        }
+    }
+}
+```
+ui 配置中所有的函数都自动绑定this为当前 WidgetProperty ，暂不支持异步校验。
 
 ### **ui.grid**
 表单或者部件布局配置。
@@ -684,6 +733,7 @@ interface SelectWidgetUI extends SCUI {
     placeholder?: string;
     disabled?: boolean;
     autofocus?: boolean;
+    filterOption?: boolean;    // 如果为true，默认启用全拼搜索label字段
     showSearch?: boolean;
     options?: {label: string; value: SFValue;}[];
     onChange?: (val: string) => void;

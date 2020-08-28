@@ -28,6 +28,10 @@ export class FormProperty {
         this._onChange = schema?.ui?.onChange;
     }
 
+    private onChange() {
+        this._onChange && this._onChange.call(this, this.getValues());
+    }
+
     public get schema() {
         return this._schema;
     }
@@ -54,13 +58,13 @@ export class FormProperty {
             property.update();
         }
         this._validateOnChange && this.validates();
-        this._onChange && this._onChange(this._values);
+        this.onChange();
     }
 
     public setValue(path: string, val: SFValue) {
         _.set(this._values, path, val);
         this._validateOnChange && this.validates();
-        this._onChange && this._onChange(this._values);
+        this.onChange()
     }
 
     public get initValue() {
@@ -73,7 +77,7 @@ export class FormProperty {
             property.reset();
             property.resetError();
         }
-        this._onChange && this._onChange(this._values);
+        this.onChange();
     }
 
     public validates() {
@@ -98,6 +102,7 @@ export class FormProperty {
             }
         }
         const customsValid = Object.values(this._properties).map(e => e.validate()).every(Boolean);
+        console.log(customsValid)
         const formCustomValid = this.schema.ui?.onValidate ? 
             this.schema.ui?.onValidate(this._values) : true;
         const isValid = ajvValid && customsValid && formCustomValid;

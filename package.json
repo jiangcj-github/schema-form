@@ -21,7 +21,8 @@
     "dependencies": {
         "ajv": "^6.x",
         "classnames": "^2.x",
-        "lodash": "^4.x"
+        "lodash": "^4.x",
+        "pinyin-match": "^1.1.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.5",
