@@ -23,7 +23,7 @@ export class WidgetProperty<UI extends SCUI = SCUI> {
     public error?: string;
     public showError = false;
 
-    constructor(props: WidgetProps<UI>, formProperty: FormProperty, update?: () => void) {
+    public updateProperty(props: WidgetProps<UI>, formProperty: FormProperty, update?: () => void) {
         const { path, schema, parent } = props;
         this._path = path;
         this._parent = parent;
@@ -47,7 +47,7 @@ export class WidgetProperty<UI extends SCUI = SCUI> {
         this._formProperty.removeProperty(this._path);
     }
 
-    public setValue(val: SFValue) {
+    public setValue(val?: SFValue) {
         this._formProperty.setValue(this._path, val);
         this.update();
     }
@@ -65,7 +65,7 @@ export class WidgetProperty<UI extends SCUI = SCUI> {
     }
 
     public reset() {
-        const default0 = _.get(this.formProperty.initValue, this._path)
+        const default0 = _.get(this.formProperty.initValue, this._path);
         this.setValue(this.schema.default ?? default0);
     }
 

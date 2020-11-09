@@ -98,6 +98,7 @@ export declare class SchemaError extends Error {
 }
 declare class SchemaUtil {
     ignoreNode(key: string, node: SchemaNode): boolean;
+    getPureSchema(schema: Schema): any;
     getSchema(schema: Schema, path: string): SchemaNode;
     eliminateRef(schema: Schema, node?: SchemaNode): void;
     parseRef(schema: Schema, ref: string): SchemaNode;

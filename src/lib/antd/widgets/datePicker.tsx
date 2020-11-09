@@ -57,7 +57,7 @@ export const DatePickerWidget = (props: WidgetProps<DataPickerWidgetUI>) => {
                 onChange={onChange}
                 style={ui.style}
                 className={ui.className}
-                allowClear={ui.allowClear}
+                allowClear={ui.allowClear ?? true}
                 disabledDate={ui.disabledDate}
                 dropdownClassName={ui.dropdownClassName}
                 getPopupContainer={ui.getPopupContainer}

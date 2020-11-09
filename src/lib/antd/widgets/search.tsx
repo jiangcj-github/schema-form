@@ -27,7 +27,7 @@ export const SearchWidget = (props: WidgetProps<SearchWidgetUI>) => {
                 disabled={ui.disabled}
                 maxLength={schema.maxLength}
                 placeholder={ui.placeholder}
-                allowClear={ui.allowClear}
+                allowClear={ui.allowClear ?? true}
                 defaultValue={schema.default}
                 prefix={ui.prefix}
                 suffix={ui.suffix}

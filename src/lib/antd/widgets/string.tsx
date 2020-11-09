@@ -36,7 +36,7 @@ export const StringWidget = (props: WidgetProps<StringWidgetUI>) => {
             <Input 
                 value={value}
                 disabled={ui.disabled}
-                allowClear={ui.allowClear}
+                allowClear={ui.allowClear ?? true}
                 maxLength={schema.maxLength}
                 placeholder={ui.placeholder}
                 defaultValue={schema.default}

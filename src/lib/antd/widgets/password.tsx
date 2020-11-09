@@ -26,7 +26,7 @@ export const PasswordWidget = (props: WidgetProps<PasswordWidgetUI>) => {
                 disabled={ui.disabled}
                 maxLength={schema.maxLength}
                 placeholder={ui.placeholder}
-                allowClear={ui.allowClear}
+                allowClear={ui.allowClear ?? true}
                 defaultValue={schema.default}
                 visibilityToggle={ui.visibilityToggle}
                 iconRender={ui.iconRender}

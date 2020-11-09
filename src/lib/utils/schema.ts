@@ -126,10 +126,24 @@ export class SchemaError extends Error {
 class SchemaUtil {
 
     ignoreNode(key: string, node: SchemaNode) {
-        if(["ui"].includes(key)) {
+        if(["ui", "default"].includes(key)) {
             return true;
         }
         return false;
+    }
+
+    public getPureSchema(schema: Schema) {
+        if(_is(schema, ["array", "object"])) {
+            const node = Array.isArray(schema) ? [] : {} as any;
+            for(const [k, v] of Object.entries(schema)) {
+                if(this.ignoreNode(k, v)) {
+                    continue;
+                }
+                node[k] = this.getPureSchema(v);
+            }
+            return node;
+        }
+        return schema;
     }
 
     public getSchema(schema: Schema, path: string): SchemaNode {

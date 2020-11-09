@@ -10,7 +10,8 @@ export class Widget<UI extends SCUI> extends React.Component<WidgetProps<UI>> {
 
     constructor(props: WidgetProps<UI>, context: FormProperty) {
         super(props, context);
-        this.widgetProperty = new WidgetProperty(props, context, this.update);
+        this.widgetProperty = new WidgetProperty();
+        this.widgetProperty.updateProperty(props, context, this.update);
     }
 
     public componentDidMount() {
@@ -21,6 +22,10 @@ export class Widget<UI extends SCUI> extends React.Component<WidgetProps<UI>> {
         this.widgetProperty.uninstall();
     }
 
+    public UNSAFE_componentWillUpdate(nextProps: WidgetProps<UI>, nextState: any, nextContext: FormProperty) {
+        this.widgetProperty.updateProperty(nextProps, nextContext, this.update);
+    }
+
     private update = () => {
         this.forceUpdate();
     }
@@ -29,10 +34,8 @@ export class Widget<UI extends SCUI> extends React.Component<WidgetProps<UI>> {
 export function useWidget<UI extends SCUI>(props: WidgetProps<UI>) {
     const [, update] = React.useState()
     const context = React.useContext(SFContext);
-
-    const widgetProperty = React.useMemo(() => {
-        return new WidgetProperty<UI>(props, context, () => update(Math.random()))
-    }, []);
+    const widgetProperty = React.useRef(new WidgetProperty<UI>()).current;
+    widgetProperty.updateProperty(props, context, () => update(Math.random()));
 
     React.useEffect(() => {
         widgetProperty.reset();

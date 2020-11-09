@@ -37,7 +37,7 @@ export const RangePickerWidget = (props: WidgetProps<RangePickerWidgetUI>) => {
                 onChange={onChange as any}
                 style={ui.style}
                 className={ui.className}
-                allowClear={ui.allowClear}
+                allowClear={ui.allowClear ?? true}
                 disabledDate={ui.disabledDate}
                 dropdownClassName={ui.dropdownClassName}
                 getPopupContainer={ui.getPopupContainer}

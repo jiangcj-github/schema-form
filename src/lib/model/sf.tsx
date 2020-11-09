@@ -8,6 +8,7 @@ import {UISchema} from "./widget-property";
 
 export interface SCFormProps {
     schema: UISchema<SCFormUI>;
+    formProperty?: FormProperty
 }
 
 export interface IBtnOption {
@@ -34,11 +35,14 @@ const SchemaForm = (props: SCFormProps, ref: ((instance: any) => void) | Mutable
     const ui = schema.ui || {};
     schemaUtil.eliminateRef(schema);
    
-    const formProperty = React.useRef(new FormProperty(props)).current;
+    const formProperty = React.useRef(props.formProperty || new FormProperty()).current;
     const gridProperty = React.useRef(new GridProperty(ui.grid)).current;
     
     React.useImperativeHandle(ref, () => formProperty);
-    
+    React.useMemo(() => {
+        formProperty.initProperty(props);
+    }, []);
+
     const children = Object.entries(schema.properties || {}).map(([key, node]) => {
         const path = `${key}`;
         return createWidget(node, path, schema);

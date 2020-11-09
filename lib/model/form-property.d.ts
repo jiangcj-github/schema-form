@@ -13,7 +13,8 @@ export declare class FormProperty {
     private _initValues;
     private _validateOnChange;
     private _onChange?;
-    constructor(props?: SCFormProps);
+    initProperty(props?: SCFormProps): void;
+    private onChange;
     get schema(): Schema;
     addProperty(path: string, property: WidgetProperty): void;
     getProperty(path: string): WidgetProperty;

@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import {WidgetProperty} from "./widget-property";
-import {Schema} from "../utils/schema";
+import {Schema, schemaUtil} from "../utils/schema";
 import Ajv from "ajv";
 import {ERRORDEFAULT} from "./error-default";
 import {SCFormProps} from "./sf";
@@ -21,7 +21,7 @@ export class FormProperty {
     private _validateOnChange = false;
     private _onChange?: (values: IFormData) => void;
 
-    constructor(props?: SCFormProps) {
+    public initProperty(props?: SCFormProps) {
         const { schema } = props || {};
         this._schema = schema || {};
         this._initValues = schema?.default || {};
@@ -88,7 +88,8 @@ export class FormProperty {
             errorDataPath: "property", 
             allErrors: true,
         });
-	    const ajvValid = ajv.validate(this._schema, this._values);
+        const pureSchema = schemaUtil.getPureSchema(this._schema);
+	    const ajvValid = ajv.validate(pureSchema, this._values);
         if(!ajvValid) {
             for(const error of ajv.errors || []) {
                 const { dataPath = "", keyword = "", params } = error;
@@ -102,7 +103,6 @@ export class FormProperty {
             }
         }
         const customsValid = Object.values(this._properties).map(e => e.validate()).every(Boolean);
-        console.log(customsValid)
         const formCustomValid = this.schema.ui?.onValidate ? 
             this.schema.ui?.onValidate(this._values) : true;
         const isValid = ajvValid && customsValid && formCustomValid;

@@ -16,10 +16,10 @@ export declare class WidgetProperty<UI extends SCUI = SCUI> {
     ui: UI;
     error?: string;
     showError: boolean;
-    constructor(props: WidgetProps<UI>, formProperty: FormProperty, update?: () => void);
+    updateProperty(props: WidgetProps<UI>, formProperty: FormProperty, update?: () => void): void;
     install(): void;
     uninstall(): void;
-    setValue(val: SFValue): void;
+    setValue(val?: SFValue): void;
     get value(): any;
     get required(): boolean | undefined;
     get propertyName(): string;

@@ -1,9 +1,10 @@
 import React, { ReactNode, CSSProperties } from "react";
 import { SCUI } from "../utils/schema";
-import { IFormData } from "./form-property";
+import { FormProperty, IFormData } from "./form-property";
 import { UISchema } from "./widget-property";
 export interface SCFormProps {
     schema: UISchema<SCFormUI>;
+    formProperty?: FormProperty;
 }
 export interface IBtnOption {
     text: string | ReactNode;

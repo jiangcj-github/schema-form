@@ -8,6 +8,7 @@ export declare class Widget<UI extends SCUI> extends React.Component<WidgetProps
     constructor(props: WidgetProps<UI>, context: FormProperty);
     componentDidMount(): void;
     componentWillUnmount(): void;
+    UNSAFE_componentWillUpdate(nextProps: WidgetProps<UI>, nextState: any, nextContext: FormProperty): void;
     private update;
 }
 export declare function useWidget<UI extends SCUI>(props: WidgetProps<UI>): WidgetProperty<UI>;
